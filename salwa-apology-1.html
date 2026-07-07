@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bbura dle mn, Salwa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #0b0d17;
+    --night-2: #12162a;
+    --gold: #c9a15a;
+    --gold-soft: #e3c98a;
+    --rose: #d98b8b;
+    --cream: #f3ecdf;
+    --muted: #a9a5b8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--night);
+    color:var(--cream);
+    font-family:'Vazirmatn',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  h1,h2,h3, .display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* stars */
+  #stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+  }
+  .star{
+    position:absolute; background:var(--cream); border-radius:50%;
+    opacity:0.5; animation:twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:0.15;}
+    50%{opacity:0.8;}
+  }
+
+  section{
+    position:relative; z-index:1;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:8vh 6vw;
+    text-align:center;
+  }
+
+  /* HERO */
+  #hero{
+    gap:2rem;
+  }
+  .eyebrow{
+    font-family:'Vazirmatn',sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold);
+    opacity:0;
+    animation:riseIn 1.2s ease forwards 0.3s;
+  }
+  #hero h1{
+    font-size:clamp(2.8rem, 8vw, 6rem);
+    color:var(--cream);
+    opacity:0;
+    animation:riseIn 1.4s ease forwards 0.6s;
+  }
+  #hero h1 span{
+    color:var(--gold-soft);
+    font-style:italic;
+  }
+  #hero p{
+    max-width:480px;
+    font-size:1.05rem;
+    color:var(--muted);
+    opacity:0;
+    animation:riseIn 1.4s ease forwards 1s;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(24px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .scrolldown{
+    position:absolute; bottom:6vh; left:50%; transform:translateX(-50%);
+    width:1px; height:60px; background:linear-gradient(var(--gold), transparent);
+    opacity:0.6;
+    animation:pulseline 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseline{
+    0%,100%{opacity:0.2;}
+    50%{opacity:0.8;}
+  }
+
+  /* ROJ SUN signature element */
+  .roj{
+    width:180px; height:180px;
+    position:relative;
+    margin:0 auto;
+  }
+  .roj-core{
+    position:absolute; inset:0; margin:auto;
+    width:56px; height:56px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-soft), var(--gold) 60%, #8a6a2e 100%);
+    box-shadow:0 0 40px 6px rgba(201,161,90,0.45);
+    animation:heartbeat 2.6s ease-in-out infinite;
+  }
+  @keyframes heartbeat{
+    0%,100%{ transform:scale(1); box-shadow:0 0 40px 6px rgba(201,161,90,0.45);}
+    50%{ transform:scale(1.08); box-shadow:0 0 60px 12px rgba(201,161,90,0.65);}
+  }
+  .ray{
+    position:absolute; top:50%; left:50%;
+    width:2px; height:78px;
+    background:linear-gradient(var(--gold), transparent);
+    transform-origin:top center;
+    opacity:0.85;
+  }
+
+  /* fade-in-on-scroll utility */
+  .reveal{
+    opacity:0; transform:translateY(30px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .reveal.visible{
+    opacity:1; transform:translateY(0);
+  }
+
+  /* TRUTH SECTION */
+  #truth{
+    max-width:640px;
+    gap:1.6rem;
+  }
+  #truth h2{
+    font-size:clamp(2rem,5vw,3rem);
+    color:var(--gold-soft);
+  }
+  #truth p{
+    color:var(--cream);
+    font-size:1.08rem;
+    max-width:560px;
+  }
+  #truth p.small{
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+
+  /* DAYS SECTION */
+  #days{
+    gap:3rem;
+    max-width:760px;
+  }
+  #days h2{
+    font-size:clamp(1.8rem,4.5vw,2.6rem);
+    color:var(--cream);
+  }
+  .day-cards{
+    display:flex; gap:2rem; flex-wrap:wrap; justify-content:center;
+    width:100%;
+  }
+  .day-card{
+    flex:1 1 260px; max-width:320px;
+    background:linear-gradient(160deg, var(--night-2), rgba(201,161,90,0.05));
+    border:1px solid rgba(201,161,90,0.25);
+    border-radius:4px;
+    padding:2rem 1.6rem;
+    text-align:left;
+  }
+  .day-card .label{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.3rem;
+    margin-bottom:0.8rem;
+    display:block;
+  }
+  .day-card p{
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+
+  /* PROMISE */
+  #promise{
+    max-width:600px;
+    gap:1.8rem;
+  }
+  #promise h2{
+    font-size:clamp(2rem,5vw,3rem);
+    color:var(--gold-soft);
+  }
+  .promise-list{
+    list-style:none;
+    display:flex; flex-direction:column; gap:1rem;
+    text-align:left;
+    width:100%;
+    max-width:460px;
+  }
+  .promise-list li{
+    display:flex; gap:0.9rem; align-items:flex-start;
+    color:var(--cream);
+    font-size:1rem;
+  }
+  .promise-list li::before{
+    content:"◆";
+    color:var(--gold);
+    font-size:0.6rem;
+    margin-top:0.5em;
+  }
+
+  /* CLOSING */
+  #closing{
+    gap:2.2rem;
+  }
+  #closing h2{
+    font-size:clamp(2.4rem,7vw,4rem);
+    color:var(--cream);
+  }
+  #closing h2 em{
+    color:var(--rose);
+    font-style:italic;
+  }
+  .signature{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--gold);
+    opacity:0;
+  }
+  .signature.visible{
+    animation:riseIn 1.4s ease forwards;
+  }
+  .sorani{
+    color:var(--muted);
+    font-size:0.9rem;
+    letter-spacing:0.04em;
+  }
+
+  footer{
+    position:relative; z-index:1;
+    text-align:center;
+    padding:3rem 1rem 4rem;
+    color:var(--muted);
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<section id="hero">
+  <span class="eyebrow">for Salwa</span>
+  <h1>bbura <span>dle mn</span></h1>
+  <p>Forgive me. Not because I'm asking you to — because I actually mean it, and I'd rather show you than just say it.</p>
+  <div class="scrolldown"></div>
+</section>
+
+<section id="truth">
+  <div class="reveal">
+    <h2>The truth, no excuses dressed up</h2>
+    <p>My friend came back to the city after a long time away, and I let those two days get away from me — mornings at work, the rest of the day with them, and somewhere in between, barely any sleep. I wasn't choosing anyone over you. I was just running on empty and didn't manage my time the way I should have.</p>
+    <p class="small">You noticed I was distant, and you were right to be upset. That's not something I want to explain away.</p>
+  </div>
+</section>
+
+<section id="days">
+  <div class="reveal">
+    <h2>What those two days actually looked like</h2>
+  </div>
+  <div class="day-cards">
+    <div class="day-card reveal">
+      <span class="label">Day one</span>
+      <p>Work in the morning, running on almost no sleep. Then straight to my friend, who I hadn't seen in months. I told myself I'd message you properly later. I didn't, and I should have.</p>
+    </div>
+    <div class="day-card reveal">
+      <span class="label">Day two</span>
+      <p>Same pattern, less excuse. I knew you were feeling it, and I still let the day slip by instead of stopping to check in on you the way you deserved.</p>
+    </div>
+  </div>
+</section>
+
+<section id="promise">
+  <div class="reveal">
+    <div class="roj" aria-hidden="true">
+      <div class="roj-core"></div>
+      <div class="rays"></div>
+    </div>
+  </div>
+  <div class="reveal">
+    <h2>Here's what changes</h2>
+    <ul class="promise-list">
+      <li>My friend goes back home soon, and things return to how they were — you come first, not last.</li>
+      <li>I'll tell you when I'm slammed instead of going quiet. Silence isn't fair to you.</li>
+      <li>I'm fixing my sleep, not just for me — a tired version of me is a worse partner to you.</li>
+      <li>This page isn't the apology. Showing up better this week is.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="closing">
+  <h2 class="reveal">I'm sorry, <em>Salwa</em>.</h2>
+  <p class="reveal" style="max-width:480px; color:var(--muted);">You don't owe me forgiveness the moment you read this. Take the time you need — I just wanted you to know exactly what happened, and that it won't keep happening.</p>
+  <p class="signature">— Blnd</p>
+  <p class="sorani reveal">i love u so so much hanasakam</p>
+</section>
+
+<footer>made quietly, for one person only</footer>
+
+<script>
+  // generate stars
+  const starField = document.getElementById('stars');
+  const starCount = 90;
+  for(let i=0;i<starCount;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const size = Math.random()*2 + 0.5;
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.top = Math.random()*100+'vh';
+    s.style.left = Math.random()*100+'vw';
+    s.style.animationDelay = (Math.random()*4)+'s';
+    starField.appendChild(s);
+  }
+
+  // generate roj rays
+  const raysContainer = document.querySelector('.rays');
+  if(raysContainer){
+    const rayCount = 16;
+    for(let i=0;i<rayCount;i++){
+      const r = document.createElement('div');
+      r.className='ray';
+      const angle = (360/rayCount)*i;
+      r.style.transform = `translate(-50%, -100%) rotate(${angle}deg)`;
+      raysContainer.appendChild(r);
+    }
+  }
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .signature');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.2});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
